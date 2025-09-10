@@ -1,0 +1,21 @@
+.navbar{
+    padding: 10px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    background: rgba(0, 0, 0, 0.2);
+
+    .searchbar{
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+
+        .search{
+            width: 400px;
+        }
+        .search-submit{
+            height: 40px;
+            width: 40px;
+        }
+    }
+}
