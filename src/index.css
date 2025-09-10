@@ -16,6 +16,7 @@ body {
   background: rgba(0, 0, 0, 0.2);
 }
 .navbar .searchbar {
+  position: relative;
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
@@ -26,6 +27,26 @@ body {
 .navbar .searchbar .search-submit {
   height: 40px;
   width: 40px;
+}
+.navbar .searchbar .search-results {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 400px;
+  background-color: rgb(108, 136, 223);
+}
+.navbar .searchbar .search-results li {
+  padding: 5px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  font-size: 1.2rem;
+  border-bottom: 1px solid white;
+}
+.navbar .searchbar .search-results li p:last-child {
+  opacity: 0.5;
 }
 
 /*# sourceMappingURL=index.css.map */
