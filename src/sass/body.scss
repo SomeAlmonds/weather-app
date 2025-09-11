@@ -1,5 +1,56 @@
-@use '_variables.scss' as *;
+@use "_variables.scss" as *;
 
-.body{
-    background: ;
+.body {
+  height: calc(100vh - 45px);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+
+  .body-content {
+    width: 80%;
+    height: 80%;
+    display: flex;
+    flex-flow: column nowrap;
+    border-radius: 10px;
+    overflow: hidden;
+
+    .primary-info {
+      flex-grow: 1;
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+      background: rgba(65, 105, 225, 0.2);
+
+      .p-info2 {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+
+        div {
+          & *{
+            margin: 0 0 5px 0;
+          }
+
+        }
+
+        .location-icon {
+          height: 50%;
+          width: 50%;
+          color: white;
+        }
+      }
+    }
+
+    .forcast-info {
+      flex-grow: 1;
+      background: rgba(65, 105, 225, 0.2);
+    }
+  }
 }

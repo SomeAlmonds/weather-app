@@ -6,37 +6,57 @@ const apiKey = "65068712977b4a22b8c110604251009";
 export default function Header({ fetchCurrent }) {
   const [searchResp, setSearchResp] = useState([]);
 
+
   async function fetchSearch(e) {
     const { value } = e.target;
-
+    
     if (value) {
+      // show city suggestions list if hidden
       const searchResults =
-        document.getElementsByClassName("search-results")[0];
-
+      document.getElementsByClassName("search-results")[0];
+      
       if (searchResults.getAttribute("style")) {
         searchResults.removeAttribute("style", "display: none;");
       }
-
+      
+      // fetch cities
       try {
         let resp = await fetch(
           `${apiURL}/search.json?key=${apiKey}&q=${value}`
         );
+        
         if (!resp.ok) {
           throw new Error(resp);
         }
         resp = await resp.json();
+        
+        // TODO: fix setState delay to get current suggestion list //
+
+        // submit first suggestion if enter is pressed
+        if (e.key === "Enter") {
+          handleSubmit(resp[0].name);
+        }
+
         setSearchResp(resp);
       } catch (error) {
         console.warn(error);
       }
+    } else {
+      // hide suggestions list if search is empty
+      const searchResults =
+        document.getElementsByClassName("search-results")[0];
+      searchResults.setAttribute("style", "display: none;");
     }
   }
 
   async function handleSubmit(city) {
-    console.log(":D");
+    // hide suggestions after submit
     const searchResults = document.getElementsByClassName("search-results")[0];
     searchResults.setAttribute("style", "display: none;");
-    fetchCurrent(city);
+    // pass city name to fitch it's weather info
+    if (city) {
+      fetchCurrent(city);
+    }
   }
 
   return (
@@ -47,12 +67,13 @@ export default function Header({ fetchCurrent }) {
           type="text"
           className="search"
           name="search"
-          placeholder="Search..."
+          placeholder="Search locations..."
+          autoComplete="off"
           onChange={(e) => fetchSearch(e)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") fetchSearch(e);
+          }}
         />
-        <button type="button" className="search-submit">
-          ss
-        </button>
         <ul className="search-results">
           {searchResp.map((location) => {
             return (
