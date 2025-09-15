@@ -34,6 +34,9 @@ export default function Header({ fetchCurrent }) {
 
         // submit first suggestion if enter is pressed
         if (e.key === "Enter") {
+
+          // TODO: fix this logical error: this makes it so that when enter is pressed
+          // the city will allways be the firs on the list not the one selected
           handleSubmit(resp[0].name);
         }
 
@@ -57,6 +60,8 @@ export default function Header({ fetchCurrent }) {
     if (city) {
       fetchCurrent(city);
     }
+    // store city in local storage to load its weather next time page is loaded
+    localStorage.setItem("city", city)
   }
 
   return (

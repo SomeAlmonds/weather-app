@@ -13,7 +13,10 @@ function App() {
   async function fetchCurrent(city) {
 
     if(!city){
-      city = "cairo"
+      // set default city to last searched city else to cairo
+      
+      // TODO: get user location to set as default 
+      city = localStorage.getItem("city")? localStorage.getItem("city") : "cairo"
     }
 
     try {
