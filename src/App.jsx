@@ -2,44 +2,63 @@ import { useEffect, useState } from "react";
 import { Body } from "./components/body";
 import Header from "./components/header";
 
-
 const apiURL = "https://api.weatherapi.com/v1";
 const apiKey = "65068712977b4a22b8c110604251009";
 
 function App() {
-  const [currentWeather, setCurrentWeather] = useState({})
+  const [currentWeather, setCurrentWeather] = useState({});
+  const [forecast, setForecast] = useState({});
 
-  // get current weather info
+  // get current weather and forecast info
   async function fetchCurrent(city) {
+    if (!city) {
+      // set default city to last searched city else to khartoum
 
-    if(!city){
-      // set default city to last searched city else to cairo
-      
-      // TODO: get user location to set as default 
-      city = localStorage.getItem("city")? localStorage.getItem("city") : "cairo"
+      // TODO: get user location to set as default
+      city = localStorage.getItem("city")
+        ? localStorage.getItem("city")
+        : "khartoum";
     }
 
+    // // fetch current weather
+    // try {
+    //   let currentResp = await fetch(`${apiURL}/current.json?key=${apiKey}&q=${city}`);
+    //   if (!currentResp.ok) {
+    //     throw new Error(`Somthing went wrong ERROR: ${currentResp.status}`);
+    //   }
+    //   currentResp = await currentResp.json();
+    //   setCurrentWeather(currentResp);
+    // } catch (error) {
+    //   console.warn(error);
+    // }
+
+    // fetch forecast also incluedes current weather obj so fetching from "/current.json" is not needed
     try {
-      let resp = await fetch(
-        `${apiURL}/current.json?key=${apiKey}&q=${city}`
+      let forecastResp = await fetch(
+        `${apiURL}/forecast.json?key=${apiKey}&q=${city}&days=3`
       );
-      if (!resp.ok) {
-        throw new Error(`Somthing went wrong ERROR: ${resp.status}`);
+      if (!forecastResp.ok) {
+        throw new Error(`Somthing went wrong ERROR: ${forecastResp.status}`);
       }
-      resp = await resp.json();
-      setCurrentWeather(resp);
-      console.log(currentWeather);
+      forecastResp = await forecastResp.json();
+      setForecast(forecastResp);
     } catch (error) {
       console.warn(error);
     }
   }
 
-  useEffect(() => () => fetchCurrent(),[])
+  useEffect(() => {
+    console.log(forecast);
+  }, [forecast]);
 
-  return <>
-  <Header fetchCurrent={fetchCurrent}/>
-  <Body currentWeather={currentWeather}/>
-  </>
+  useEffect(() => () => fetchCurrent(), []);
+
+  return (
+    <>
+      <Header fetchCurrent={fetchCurrent} />
+      <Body forecastObj={forecast} />
+    </>
+  );
 }
 
 export default App;

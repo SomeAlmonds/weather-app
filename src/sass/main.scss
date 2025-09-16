@@ -12,3 +12,13 @@ body{
     background-color: $main-bg-color;
     color: white;
 }
+
+a{
+    text-decoration: none;
+    color: $second-bg-color;
+    transition: 200ms;
+
+    &:hover{
+        filter: brightness(150%);
+    }
+}

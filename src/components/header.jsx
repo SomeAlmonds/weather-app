@@ -6,35 +6,33 @@ const apiKey = "65068712977b4a22b8c110604251009";
 export default function Header({ fetchCurrent }) {
   const [searchResp, setSearchResp] = useState([]);
 
-
   async function fetchSearch(e) {
     const { value } = e.target;
-    
+
     if (value) {
       // show city suggestions list if hidden
       const searchResults =
-      document.getElementsByClassName("search-results")[0];
-      
+        document.getElementsByClassName("search-results")[0];
+
       if (searchResults.getAttribute("style")) {
         searchResults.removeAttribute("style", "display: none;");
       }
-      
+
       // fetch cities
       try {
         let resp = await fetch(
           `${apiURL}/search.json?key=${apiKey}&q=${value}`
         );
-        
+
         if (!resp.ok) {
           throw new Error(resp);
         }
         resp = await resp.json();
-        
+
         // TODO: fix setState delay to get current suggestion list //
 
         // submit first suggestion if enter is pressed
         if (e.key === "Enter") {
-
           // TODO: fix this logical error: this makes it so that when enter is pressed
           // the city will allways be the firs on the list not the one selected
           handleSubmit(resp[0].name);
@@ -61,12 +59,20 @@ export default function Header({ fetchCurrent }) {
       fetchCurrent(city);
     }
     // store city in local storage to load its weather next time page is loaded
-    localStorage.setItem("city", city)
+    localStorage.setItem("city", city);
   }
 
   return (
     <div className="navbar">
-      <div className="navbar-logo">WEATHER</div>
+      <div className="navbar-logo">
+        WEATHER
+        <p style={{margin: 0, fontSize: "0.8rem"}}>
+          Powered by{" "}
+          <a href="https://www.weatherapi.com/" title="Free Weather API">
+            WeatherAPI.com
+          </a>
+        </p>
+      </div>
       <div className="searchbar">
         <input
           type="text"

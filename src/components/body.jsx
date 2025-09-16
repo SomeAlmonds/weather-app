@@ -3,8 +3,8 @@ import { images, icons } from "../assets/assets";
 const { night, clouds, lightClouds } = images;
 
 // TODO: integrate map API
-export function Body({ currentWeather }) {
-  const { current, location } = currentWeather;
+export function Body({ forecastObj }) {
+  const { current, location, forecast} = forecastObj;
 
   return (
     <div className="body">
@@ -16,6 +16,9 @@ export function Body({ currentWeather }) {
           width={window.innerWidth}
         />
       </div>
+
+      {/* ////////////////////////////////////// */}
+      
       <div className="body-content">
         <div className="primary-info">
           <div className="p-info1">
@@ -26,6 +29,7 @@ export function Body({ currentWeather }) {
               />
               <p className="temp-p">{current?.temp_c}</p>
             </div>
+
             <div>
               <p>
                 WIND: {current?.wind_kph + " km/h "}
@@ -44,12 +48,26 @@ export function Body({ currentWeather }) {
               <p>{location?.country}</p>
             </div>
             <icons.locationIcon />
-          </div>
+          </div>      
         </div>
-        <div className="forcast-info">;</div>
+        {/* //////////////////////////////////////////////// */}
+        <div className="forcast-info">
+          <ForecastDays forecast={forecast}/>
+        </div>
       </div>
     </div>
   );
+}
+
+
+function ForecastDays({forecast}){
+  // logic for upcoming days forcast component
+
+  return (forecast?.forecastday.map((day) => {
+    <div className="day">
+      
+    </div>
+  }))
 }
 
 function uvIndexScale(uvNum) {

@@ -22,11 +22,45 @@
     overflow: hidden;
 
     .primary-info {
+      height: 50%;
       flex-grow: 1;
       display: flex;
       flex-flow: row nowrap;
       justify-content: space-between;
       background: rgba(65, 105, 225, 0.2);
+
+      .p-info1 {
+        width: 35%;
+        display: flex;
+        flex-flow: row nowrap;
+
+        div:first-child {
+          width: 50%;
+          font-size: 5rem;
+
+          img {
+            width: 70%;
+          }
+
+        p {
+           margin: 0;
+            text-align: center;
+            line-height: 16px;
+          }
+        }
+
+        div:last-child {
+          width: 50%;
+          display: flex;
+          flex-flow: column nowrap;
+          justify-content: flex-end;
+
+          p {
+            margin: 4px;
+            text-wrap: nowrap;
+          }
+        }
+      }
 
       .p-info2 {
         display: flex;
@@ -34,10 +68,9 @@
         align-items: center;
 
         div {
-          & *{
+          & * {
             margin: 0 0 5px 0;
           }
-
         }
 
         .location-icon {
@@ -49,6 +82,7 @@
     }
 
     .forcast-info {
+      height: 50%;
       flex-grow: 1;
       background: rgba(65, 105, 225, 0.2);
     }
