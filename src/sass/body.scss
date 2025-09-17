@@ -84,7 +84,19 @@
     .forcast-info {
       height: 50%;
       flex-grow: 1;
+      display: flex;
+      flex-flow: row nowrap;
+      overflow-x: auto;
+      justify-content: space-around;
       background: rgba(65, 105, 225, 0.2);
+      font-size: 1rem;
+
+      & > div{
+        width: 200px;
+        padding: 5px;
+        background-color: rgba(78, 119, 241, 0.2);
+        border-radius: 10px;
+      }
     }
   }
 }
