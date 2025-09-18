@@ -13,7 +13,7 @@ export function Body({ forecastObj }) {
           src={night}
           alt="night sky"
           height={window.innerHeight}
-          width={window.innerWidth}
+          width="1000"
         />
       </div>
 
@@ -73,7 +73,7 @@ function ForecastDays({ forecast }) {
 
     return (
       <div className="day" key={date}>
-        <p>{weekday}</p>
+        <p className="day-name">{weekday}</p>
         <div className="sun-rise-set">
           <div>
             <icons.SunRise /> {day.astro.sunrise}
@@ -82,26 +82,24 @@ function ForecastDays({ forecast }) {
             <icons.SunSet /> {day.astro.sunset}
           </div>
         </div>
-        <div className="avg-temp">
-          {`Min: ${day.day.mintemp_c} | Max: ${day.day.maxtemp_c}`}
-        </div>
 
-        <div id={"expand-" + weekday} style={{ display: "none" }}>
-          <div className="day-condition">
+        <div className="extra-info">
+          <p>Temp: {`Min: ${day.day.mintemp_c} | Max: ${day.day.maxtemp_c}`}</p>
+          <p className="day-condition">
             {day.day.condition.text}{" "}
             <img
               src={day.day.condition.icon}
               alt={`${day.day.condition.text} icon`}
-              width={40}
+              width={35}
             />
-          </div>
+          </p>
 
           <p>Chance of rain: {day.day.daily_chance_of_rain}%</p>
           <p>Max wind speed: {day.day.maxwind_kph}</p>
           <p>UV index: {uvIndexScale(day.day.uv)}</p>
         </div>
 
-        <button
+        {/* <button
           type="button"
           className="expand-info-btn"
           onClick={() => {
@@ -110,7 +108,7 @@ function ForecastDays({ forecast }) {
               ? element.removeAttribute("style")
               : element.setAttribute("style", "display: none");
           }}
-        ><icons.ChevronIcon /></button>
+        ><icons.ChevronIcon /></button> */}
       </div>
     );
   });

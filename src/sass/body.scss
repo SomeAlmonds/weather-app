@@ -6,23 +6,31 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
   .bg {
+    width: 100%;
     position: absolute;
     top: 0;
     left: 0;
     z-index: -1;
+    img{
+      min-width: 1080px;
+      width: 100vw;
+      height: auto;
+    }
   }
 
   .body-content {
     width: 80%;
-    height: 80%;
+    height: 90%;
     display: flex;
     flex-flow: column nowrap;
     border-radius: 10px;
     overflow: hidden;
 
     .primary-info {
-      height: 50%;
+      height: 30%;
+      padding: 5px;
       flex-grow: 1;
       display: flex;
       flex-flow: row nowrap;
@@ -32,28 +40,26 @@
       .p-info1 {
         width: 35%;
         display: flex;
-        flex-flow: row nowrap;
+        flex-flow: column nowrap;
 
         div:first-child {
-          width: 50%;
+          display: flex;
+          flex-flow: row nowrap;
+          align-items: center;
           font-size: 5rem;
 
           img {
-            width: 70%;
+            width: 20%;
           }
 
         p {
            margin: 0;
-            text-align: center;
-            line-height: 16px;
           }
         }
 
         div:last-child {
-          width: 50%;
           display: flex;
           flex-flow: column nowrap;
-          justify-content: flex-end;
 
           p {
             margin: 4px;
@@ -83,19 +89,58 @@
 
     .forcast-info {
       height: 50%;
+      padding: 10px;
       flex-grow: 1;
       display: flex;
       flex-flow: row nowrap;
-      overflow-x: auto;
       justify-content: space-around;
+      scrollbar-color: rgb(65, 105, 225) transparent;
+      overflow-y: auto;
+      gap: 20px;
       background: rgba(65, 105, 225, 0.2);
-      font-size: 1rem;
+      font-size: 1.2rem;
 
-      & > div{
-        width: 200px;
+      .day{
+        min-width: 250px;
+        height: 90%;
         padding: 5px;
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
         background-color: rgba(78, 119, 241, 0.2);
         border-radius: 10px;
+
+        .day-name{
+          margin: 5px;
+          font-size: 1.5rem;
+          font-weight: 600;
+        }
+        
+        .sun-rise-set{
+          width: 100%;
+          margin: 4px;
+          display: flex;
+          flex-flow: row nowrap;
+          justify-content: space-around;
+        }
+
+        .extra-info{
+          align-self: flex-start;
+
+          p{
+            margin: 0;
+            line-height: 35px;
+          }
+
+          .day-condition{
+            display: flex;
+            flex-flow: row nowrap;
+            align-items: center;
+            img{
+              display: block;
+            }
+          }
+        }
       }
     }
   }
