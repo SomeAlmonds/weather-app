@@ -20,6 +20,11 @@ a:hover {
   filter: brightness(150%);
 }
 
+footer {
+  font-size: 1rem;
+  opacity: 80%;
+}
+
 .navbar {
   padding: 10px;
   display: flex;
@@ -35,6 +40,25 @@ a:hover {
 }
 .navbar .searchbar *:focus {
   outline: 1px solid white;
+}
+.navbar .searchbar .switch {
+  margin-right: 5px;
+  height: 44px;
+  width: 44px;
+  background: none;
+  border: 1px solid rgb(70, 70, 161);
+  color: rgb(70, 70, 161);
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.navbar .searchbar .switch:hover {
+  background-color: rgb(70, 70, 161);
+  color: rgb(33, 33, 88);
+  transition: 200ms;
+}
+.navbar .searchbar .switch:focus {
+  filter: brightness(140%);
+  outline: none;
 }
 .navbar .searchbar .search {
   height: 40px;
@@ -79,6 +103,7 @@ a:hover {
   height: calc(100vh - 45px);
   position: relative;
   display: flex;
+  flex-flow: column;
   align-items: center;
   justify-content: center;
 }

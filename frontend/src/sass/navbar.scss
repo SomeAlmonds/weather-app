@@ -6,18 +6,38 @@
   flex-flow: row nowrap;
   justify-content: space-between;
   background: $primary-color;
-  
-  
+
   .searchbar {
     position: relative;
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
-    
+
     & *:focus {
       outline: 1px solid white;
     }
-    
+
+    .switch {
+      margin-right: 5px;
+      height: 44px;
+      width: 44px;
+      background: none;
+      border: 1px solid $secondary-color;
+      color: $secondary-color;
+      font-size: 1.5rem;
+      font-weight: bold;
+
+      &:hover{
+        background-color: $secondary-color;
+        color: $primary-color;
+        transition: 200ms;
+      }
+      &:focus{
+        filter: brightness(140%);
+        outline: none;
+      }
+    }
+
     .search {
       height: 40px;
       width: 400px;
@@ -25,7 +45,7 @@
       font-size: 1rem;
       border: 1px solid $secondary-color;
     }
-    
+
     .search-results {
       margin: 0;
       padding: 0;

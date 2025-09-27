@@ -41,7 +41,7 @@ export function Body({ forecastObj, tempToggle }) {
 
             <div>
               <p>
-                WIND: {(current ? current[windVar] : "")} {windIndecator}
+                WIND: {current ? current[windVar] : ""} {windIndecator}
                 {<icons.ArrowUp rotation={current?.wind_degree} />}
                 {current?.wind_dir}
               </p>
@@ -70,6 +70,10 @@ export function Body({ forecastObj, tempToggle }) {
           />
         </div>
       </div>
+      <footer>
+        this website was made by{" "}
+        <a href="mailto:almohanedkhalil@gmail.com">almohanad</a>
+      </footer>
     </div>
   );
 }

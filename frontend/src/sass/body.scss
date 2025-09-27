@@ -4,6 +4,7 @@
   height: calc(100vh - 45px);
   position: relative;
   display: flex;
+  flex-flow: column;
   align-items: center;
   justify-content: center;
 

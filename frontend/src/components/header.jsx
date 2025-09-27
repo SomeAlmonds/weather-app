@@ -67,8 +67,12 @@ export default function Header({ fetchCurrent, tempToggle, setTempToggle }) {
         </p>
       </div>
       <div className="searchbar">
-        <button type="button" onClick={() => setTempToggle(!tempToggle)}>
-          {tempToggle ? "f" : "c"}
+        <button
+          className="switch"
+          type="button"
+          onClick={() => setTempToggle(!tempToggle)}
+        >
+          {tempToggle ? "°F" : "°C"}
         </button>
         <input
           type="text"
