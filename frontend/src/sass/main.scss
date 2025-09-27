@@ -1,0 +1,24 @@
+@use '_variables.scss' as *;
+
+body{
+    margin: 0;
+    padding: 0;
+    max-width: 100vw;
+    max-height: 100vh;
+    overflow: hidden;
+    box-sizing: border-box;
+    font-family: 'Franklin Gothic small', 'Arial Narrow', Arial, sans-serif;
+    font-size: 1.5rem;
+    background-color: $main-bg-color;
+    color: white;
+}
+
+a{
+    text-decoration: none;
+    color: $second-bg-color;
+    transition: 200ms;
+
+    &:hover{
+        filter: brightness(150%);
+    }
+}
