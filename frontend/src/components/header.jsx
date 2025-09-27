@@ -26,12 +26,8 @@ export default function Header({ fetchCurrent, tempToggle, setTempToggle }) {
         }
         resp = await resp.json();
 
-        // TODO: fix setState delay to get current suggestion list //
-
         // submit first suggestion if enter is pressed
         if (e.key === "Enter") {
-          // TODO: fix this logical error: this makes it so that when enter is pressed
-          // the city will allways be the firs on the list not the one selected
           handleSubmit(resp[0].name);
         }
 
