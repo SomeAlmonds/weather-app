@@ -1,11 +1,14 @@
 @use "_variables.scss" as *;
 
 .navbar {
+  width: 100vw;
+  height: 60px;
   padding: 10px;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
   background: $primary-color;
+  transition: 100ms;
 
   .searchbar {
     position: relative;
@@ -17,14 +20,14 @@
       outline: 1px solid white;
     }
 
-    .switch {
+    .btn {
       margin-right: 5px;
-      height: 44px;
-      width: 44px;
+      height: 40px;
+      width: 40px;
       background: none;
       border: 1px solid $secondary-color;
       color: $secondary-color;
-      font-size: 1.5rem;
+      font-size: $h3-font-size;
       font-weight: bold;
 
       &:hover{
@@ -38,11 +41,16 @@
       }
     }
 
+    .search-btn{
+      display: none;
+    }
+
     .search {
       height: 40px;
-      width: 400px;
+      width: $searchbar-width-L;
+      padding: 5px;
       background-color: $primary-color;
-      font-size: 1rem;
+      font-size: $large-font;
       border: 1px solid $secondary-color;
     }
 
@@ -51,8 +59,8 @@
       padding: 0;
       position: absolute;
       top: 100%;
-      left: 0;
-      width: 100%;
+      right: 0;
+      width: $searchbar-width-L;
       z-index: 999;
 
       li {
@@ -63,7 +71,7 @@
         justify-content: space-between;
         align-items: center;
         background-color: $secondary-color;
-        font-size: 1.2rem;
+        font-size: $large-font;
         border-bottom: 1px solid rgb(179, 198, 253);
         cursor: pointer;
         transition: 200ms;
@@ -80,5 +88,54 @@
         }
       }
     }
+  }
+}
+
+@media only screen and (max-width: 640px) {
+    .navbar{
+    .searchbar{
+      .search{
+        width: $searchbar-width-M;
+      }
+      .search-results{
+        width: $searchbar-width-M;
+    }
+  }
+  }
+}
+@media only screen and (max-width: 500px) {
+  .navbar{
+    .searchbar{
+      .search{
+        width: $searchbar-width-S;
+      }
+      .search-results{
+        width: $searchbar-width-S;
+    }
+  }
+  }
+
+}
+@media only screen and (max-width: 375px) {
+  .navbar{
+    .searchbar{
+      .search{
+        width: 175px;
+        position: absolute;
+        top: 0;
+        left: -100%;
+        display: none;
+      }
+      .search-results{
+        width: 175px;
+        left: -100%;
+      li{
+        font-size: $medium-font;
+      }
+    }
+    .search-btn{
+      display: block;
+    }
+  }
   }
 }

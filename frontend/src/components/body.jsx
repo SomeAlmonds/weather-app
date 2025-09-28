@@ -1,8 +1,5 @@
-import { images, icons } from "../assets/assets";
+import { icons } from "../assets/assets";
 
-const { night, clouds, lightClouds } = images;
-
-// TODO: integrate map API
 export function Body({ forecastObj, tempToggle }) {
   const { current, location, forecast } = forecastObj;
 
@@ -15,14 +12,7 @@ export function Body({ forecastObj, tempToggle }) {
 
   return (
     <div className="body">
-      <div className="bg">
-        <img
-          src={night}
-          alt="night sky"
-          height={window.innerHeight}
-          width="1000"
-        />
-      </div>
+      <div className={`bg isday-${current?.is_day}`}></div>
 
       {/* ////////////////////////////////////// */}
 
@@ -78,7 +68,13 @@ export function Body({ forecastObj, tempToggle }) {
   );
 }
 
-function ForecastDays({ forecast, tempVar, windVar, tempIndecator, windIndecator }) {
+function ForecastDays({
+  forecast,
+  tempVar,
+  windVar,
+  tempIndecator,
+  windIndecator,
+}) {
   // logic for upcoming days forcast component
 
   // NOTE:
@@ -119,7 +115,9 @@ function ForecastDays({ forecast, tempVar, windVar, tempIndecator, windIndecator
           </p>
 
           <p>Chance of rain: {day.day.daily_chance_of_rain}%</p>
-          <p>Max wind speed: {day.day[`max${windVar}`]} {windIndecator}</p>
+          <p>
+            Max wind speed: {day.day[`max${windVar}`]} {windIndecator}
+          </p>
           <p>UV index: {uvIndexScale(day.day.uv)}</p>
         </div>
       </div>

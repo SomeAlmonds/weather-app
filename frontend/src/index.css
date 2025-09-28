@@ -1,10 +1,12 @@
-body {
+* {
   margin: 0;
   padding: 0;
-  max-width: 100vw;
-  max-height: 100vh;
-  overflow: hidden;
   box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
   font-family: "Franklin Gothic small", "Arial Narrow", Arial, sans-serif;
   font-size: 1.5rem;
   background-color: royalblue;
@@ -21,16 +23,26 @@ a:hover {
 }
 
 footer {
+  line-height: 1px;
+  height: 10px;
   font-size: 1rem;
   opacity: 80%;
+  text-shadow: 2px 2px 2px black;
+}
+
+h1 {
+  font-size: 1.5rem;
 }
 
 .navbar {
+  width: 100vw;
+  height: 60px;
   padding: 10px;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
   background: rgb(33, 33, 88);
+  transition: 100ms;
 }
 .navbar .searchbar {
   position: relative;
@@ -41,28 +53,32 @@ footer {
 .navbar .searchbar *:focus {
   outline: 1px solid white;
 }
-.navbar .searchbar .switch {
+.navbar .searchbar .btn {
   margin-right: 5px;
-  height: 44px;
-  width: 44px;
+  height: 40px;
+  width: 40px;
   background: none;
   border: 1px solid rgb(70, 70, 161);
   color: rgb(70, 70, 161);
   font-size: 1.5rem;
   font-weight: bold;
 }
-.navbar .searchbar .switch:hover {
+.navbar .searchbar .btn:hover {
   background-color: rgb(70, 70, 161);
   color: rgb(33, 33, 88);
   transition: 200ms;
 }
-.navbar .searchbar .switch:focus {
+.navbar .searchbar .btn:focus {
   filter: brightness(140%);
   outline: none;
+}
+.navbar .searchbar .search-btn {
+  display: none;
 }
 .navbar .searchbar .search {
   height: 40px;
   width: 400px;
+  padding: 5px;
   background-color: rgb(33, 33, 88);
   font-size: 1rem;
   border: 1px solid rgb(70, 70, 161);
@@ -72,8 +88,8 @@ footer {
   padding: 0;
   position: absolute;
   top: 100%;
-  left: 0;
-  width: 100%;
+  right: 0;
+  width: 400px;
   z-index: 999;
 }
 .navbar .searchbar .search-results li {
@@ -84,7 +100,7 @@ footer {
   justify-content: space-between;
   align-items: center;
   background-color: rgb(70, 70, 161);
-  font-size: 1.2rem;
+  font-size: 1rem;
   border-bottom: 1px solid rgb(179, 198, 253);
   cursor: pointer;
   transition: 200ms;
@@ -99,25 +115,66 @@ footer {
   opacity: 0.5;
 }
 
+@media only screen and (max-width: 640px) {
+  .navbar .searchbar .search {
+    width: 250px;
+  }
+  .navbar .searchbar .search-results {
+    width: 250px;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .navbar .searchbar .search {
+    width: 150px;
+  }
+  .navbar .searchbar .search-results {
+    width: 150px;
+  }
+}
+@media only screen and (max-width: 375px) {
+  .navbar .searchbar .search {
+    width: 175px;
+    position: absolute;
+    top: 0;
+    left: -100%;
+    display: none;
+  }
+  .navbar .searchbar .search-results {
+    width: 175px;
+    left: -100%;
+  }
+  .navbar .searchbar .search-results li {
+    font-size: 0.9rem;
+  }
+  .navbar .searchbar .search-btn {
+    display: block;
+  }
+}
 .body {
-  height: calc(100vh - 45px);
+  height: calc(100vh - 60px);
+  width: 100vw;
   position: relative;
   display: flex;
   flex-flow: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
+  transition: 100ms;
 }
 .body .bg {
-  width: 100%;
+  width: 100vw;
+  height: 100%;
   position: absolute;
   top: 0;
   left: 0;
   z-index: -1;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
-.body .bg img {
-  min-width: 1080px;
-  width: 100vw;
-  height: auto;
+.body .isday-1 {
+  background-image: url("src/assets/clear-day-sky.jpeg");
+}
+.body .isday-0 {
+  background-image: url("src/assets/clear-night.jpg");
 }
 .body .body-content {
   width: 80%;
@@ -125,10 +182,10 @@ footer {
   display: flex;
   flex-flow: column nowrap;
   border-radius: 10px;
-  overflow: hidden;
+  overflow-y: auto;
 }
 .body .body-content .primary-info {
-  height: 30%;
+  height: 200px;
   padding: 5px;
   flex-grow: 1;
   display: flex;
@@ -137,7 +194,6 @@ footer {
   background: rgba(65, 105, 225, 0.2);
 }
 .body .body-content .primary-info .p-info1 {
-  width: 35%;
   display: flex;
   flex-flow: column nowrap;
 }
@@ -148,7 +204,7 @@ footer {
   font-size: 5rem;
 }
 .body .body-content .primary-info .p-info1 div:first-child img {
-  width: 20%;
+  width: 60px;
 }
 .body .body-content .primary-info .p-info1 div:first-child p {
   margin: 0;
@@ -162,34 +218,35 @@ footer {
   text-wrap: nowrap;
 }
 .body .body-content .primary-info .p-info2 {
+  margin-left: 20px;
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
+  font-size: 2rem;
 }
 .body .body-content .primary-info .p-info2 div * {
   margin: 0 0 5px 0;
 }
 .body .body-content .primary-info .p-info2 .location-icon {
-  height: 50%;
-  width: 50%;
+  height: 80px;
+  width: 80px;
   color: white;
 }
 .body .body-content .forcast-info {
-  height: 50%;
   padding: 10px;
   flex-grow: 1;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-around;
   scrollbar-color: rgb(65, 105, 225) transparent;
-  overflow-y: auto;
+  overflow: auto;
   gap: 20px;
   background: rgba(65, 105, 225, 0.2);
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 .body .body-content .forcast-info .day {
   min-width: 250px;
-  height: 90%;
+  height: 250px;
   padding: 5px;
   display: flex;
   flex-flow: column nowrap;
@@ -198,9 +255,12 @@ footer {
   border-radius: 10px;
 }
 .body .body-content .forcast-info .day .day-name {
+  width: 100%;
   margin: 5px;
+  text-align: center;
   font-size: 1.5rem;
   font-weight: 600;
+  border-bottom: 1px solid rgb(108, 136, 223);
 }
 .body .body-content .forcast-info .day .sun-rise-set {
   width: 100%;
@@ -223,6 +283,45 @@ footer {
 }
 .body .body-content .forcast-info .day .extra-info .day-condition img {
   display: block;
+}
+
+@media only screen and (max-width: 640px) {
+  .body .body-content {
+    width: 90%;
+  }
+  .body .body-content .primary-info .p-info2 {
+    font-size: 1.5rem;
+  }
+  .body .body-content .primary-info .p-info2 .location-icon {
+    display: none;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .body .body-content {
+    width: 95%;
+  }
+  .body .body-content .primary-info .p-info1 div:first-child {
+    font-size: 2.5rem;
+  }
+  .body .body-content .primary-info .p-info1 div:last-child {
+    font-size: 1rem;
+  }
+  .body .body-content .primary-info .p-info2 {
+    margin-top: 10px;
+    align-self: flex-start;
+  }
+  .body .body-content .primary-info .p-info2 .location-icon {
+    height: 50px;
+    width: 50px;
+  }
+}
+@media only screen and (max-width: 410px) {
+  .body .body-content .primary-info .p-info1 div:first-child {
+    font-size: 2.2rem;
+  }
+  .body .body-content .primary-info .p-info2 {
+    align-self: flex-start;
+  }
 }
 
 /*# sourceMappingURL=index.css.map */

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { icons } from "../assets/assets";
 
 export default function Header({ fetchCurrent, tempToggle, setTempToggle }) {
   const [searchResp, setSearchResp] = useState([]);
@@ -58,7 +59,7 @@ export default function Header({ fetchCurrent, tempToggle, setTempToggle }) {
   return (
     <div className="navbar">
       <div className="navbar-logo">
-        WEATHER
+        <h1>WEATHER</h1>
         <p style={{ margin: 0, fontSize: "0.8rem" }}>
           Powered by{" "}
           <a href="https://www.weatherapi.com/" title="Free Weather API">
@@ -68,11 +69,22 @@ export default function Header({ fetchCurrent, tempToggle, setTempToggle }) {
       </div>
       <div className="searchbar">
         <button
-          className="switch"
+          className="switch btn"
           type="button"
           onClick={() => setTempToggle(!tempToggle)}
         >
           {tempToggle ? "°F" : "°C"}
+        </button>
+        <button
+          className="search-btn btn"
+          type="button"
+          onClick={() => {
+            const searchbar = document.getElementsByClassName("search")[0];
+            searchbar.setAttribute("style", "display: block");
+            searchbar.focus();
+          }}
+        >
+          <icons.SearchIcon />
         </button>
         <input
           type="text"
@@ -84,6 +96,17 @@ export default function Header({ fetchCurrent, tempToggle, setTempToggle }) {
           onKeyDown={(e) => {
             if (e.key === "Enter") fetchSearch(e);
           }}
+          onBlur={(e) => {
+            const searchbar = document.getElementsByClassName("search")[0];
+            if (searchbar.getAttribute("style")) {
+              searchbar.removeAttribute("style", "display: block;");
+            }
+            e.target.value = "";
+
+            const searchResults =
+              document.getElementsByClassName("search-results")[0];
+            setTimeout(() => searchResults.setAttribute("style", "display: none;"),100);
+          }}
         />
         <ul className="search-results">
           {searchResp.map((location) => {
@@ -94,7 +117,9 @@ export default function Header({ fetchCurrent, tempToggle, setTempToggle }) {
                 onKeyDown={(e) => {
                   if (e.key === "Enter") handleSubmit(location.name);
                 }}
-                onClick={() => handleSubmit(location.name)}
+                onClick={() => {
+                  handleSubmit(location.name);
+                }}
               >
                 <p>{location.name}</p>
                 <p>{location.country}</p>
