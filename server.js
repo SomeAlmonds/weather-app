@@ -1,14 +1,12 @@
 import express from "express";
-import { api } from "./apiInfo.js";
 
-const { apiURL, apiKey } = api;
+const apiURL= "https://api.weatherapi.com/v1";
+const apiKey= "65068712977b4a22b8c110604251009";
 
 const app = express();
 
-app.listen(3000);
-
 // handle search suggestions
-app.get("/search", async (req, res) => {
+app.get("/api/search", async (req, res) => {
   const input = req.query.input;
   res.setHeader("Content-Type", "application/json");
   res.setHeader("Access-Control-Allow-Origin", "http://localhost:5173");
@@ -29,7 +27,7 @@ app.get("/search", async (req, res) => {
 });
 
 // handle weather forecast rendering
-app.get("/forecast", async (req, res) => {
+app.get("/api/forecast", async (req, res) => {
   const city = req.query.city;
   res.setHeader("Content-Type", "application/json");
   res.setHeader("Access-Control-Allow-Origin", "http://localhost:5173");
@@ -47,3 +45,5 @@ app.get("/forecast", async (req, res) => {
     res.status(500).send(error);
   }
 });
+
+module.exports = app;
