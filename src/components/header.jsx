@@ -98,8 +98,7 @@ export default function Header({ fetchCurrent, tempToggle, setTempToggle }) {
         </button>
 
         <div 
-        className="search-container"
-        onBlur={() => hideSearch()}>
+        className="search-container">
           <input
             type="text"
             className="search"
@@ -115,7 +114,7 @@ export default function Header({ fetchCurrent, tempToggle, setTempToggle }) {
             }}
           />
           
-          <ul className="search-results">
+          <ul className="search-results" onBlur={() => hideSearch()}>
             {searchResp.map((location) => {
               return (
                 <li
