@@ -6,12 +6,14 @@ export default function Header({ fetchCurrent, tempToggle, setTempToggle }) {
 
   function hideSearch() {
     const searchbar = document.getElementsByClassName("search")[0];
-    if (searchbar.getAttribute("style")) {
-      searchbar.removeAttribute("style", "display: block;");
-    }
-
     const searchResults = document.getElementsByClassName("search-results")[0];
-    searchResults.setAttribute("style", "display: none;");
+
+    if (document.activeElement !== searchResults) {
+      if (searchbar.getAttribute("style")) {
+        searchbar.removeAttribute("style", "display: block;");
+      }
+      searchResults.setAttribute("style", "display: none;");
+    }
   }
 
   async function fetchSearch(e) {
@@ -97,8 +99,7 @@ export default function Header({ fetchCurrent, tempToggle, setTempToggle }) {
           <icons.SearchIcon />
         </button>
 
-        <div 
-        className="search-container">
+        <div className="search-container">
           <input
             type="text"
             className="search"
@@ -113,7 +114,7 @@ export default function Header({ fetchCurrent, tempToggle, setTempToggle }) {
               }
             }}
           />
-          
+
           <ul className="search-results" onBlur={() => hideSearch()}>
             {searchResp.map((location) => {
               return (
