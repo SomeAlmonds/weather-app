@@ -8,7 +8,10 @@ export default function Header({ fetchCurrent, tempToggle, setTempToggle }) {
     const searchbar = document.getElementsByClassName("search")[0];
     const searchResults = document.getElementsByClassName("search-results")[0];
 
-    if (!searchResults.children.includes(document.activeElement)) {
+    if (
+      !searchResults.contains(document.activeElement) &
+      (searchbar !== document.activeElement)
+    ) {
       if (searchbar.getAttribute("style")) {
         searchbar.removeAttribute("style", "display: block;");
       }
@@ -131,6 +134,7 @@ export default function Header({ fetchCurrent, tempToggle, setTempToggle }) {
                     handleSubmit(location.name);
                     hideSearch();
                   }}
+                  onBlur={() => hideSearch()}
                 >
                   <p>{location.name}</p>
                   <p>{location.country}</p>
