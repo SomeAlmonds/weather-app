@@ -3,7 +3,11 @@ import express from "express";
 const apiURL= "https://api.weatherapi.com/v1";
 const apiKey= "65068712977b4a22b8c110604251009";
 
+const PORT = process.env.PORT || 5000;
+
 const app = express();
+
+app.listen(PORT)
 
 // handle search suggestions
 app.get("/api/search", async (req, res) => {
