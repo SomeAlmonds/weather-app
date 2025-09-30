@@ -21,7 +21,7 @@ export default function Header({ fetchCurrent, tempToggle, setTempToggle }) {
       // fetch cities
       try {
         let resp = await fetch(
-          `https://yourproject.vercel.app/api/search?input=${value}`
+          `https://weather-app.vercel.app/api/search?input=${value}`
         );
 
         if (!resp.ok) {
