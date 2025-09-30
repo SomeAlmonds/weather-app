@@ -8,7 +8,7 @@ export default function Header({ fetchCurrent, tempToggle, setTempToggle }) {
     const searchbar = document.getElementsByClassName("search")[0];
     const searchResults = document.getElementsByClassName("search-results")[0];
 
-    if (document.activeElement !== searchResults) {
+    if (!searchResults.children.includes(document.activeElement)) {
       if (searchbar.getAttribute("style")) {
         searchbar.removeAttribute("style", "display: block;");
       }
