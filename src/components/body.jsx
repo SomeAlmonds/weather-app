@@ -12,7 +12,7 @@ export function Body({ forecastObj, tempToggle }) {
 
   return (
     <div className="body">
-      <div className={`bg isday-${current?.is_day}`}></div>
+      <div className={`bg isday-${current?.is_day || 0}`}></div>
 
       {/* ////////////////////////////////////// */}
 

@@ -35,10 +35,6 @@ function App() {
     }
   }
 
-  useEffect(() => {
-    console.log(forecast);
-  }, [forecast]);
-
   useEffect(() => () => fetchCurrent(), []);
 
   return (
