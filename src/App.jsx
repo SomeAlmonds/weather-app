@@ -13,8 +13,6 @@ function App() {
   async function fetchCurrent(city) {
     if (!city) {
       // set default city to last searched city else to khartoum
-
-      // TODO: get user location to set as default
       city = localStorage.getItem("city")
         ? localStorage.getItem("city")
         : "khartoum";
@@ -35,7 +33,9 @@ function App() {
     }
   }
 
-  useEffect(() => () => fetchCurrent(), []);
+  useEffect(() => {
+    () => fetchCurrent();
+  }, []);
 
   return (
     <>
