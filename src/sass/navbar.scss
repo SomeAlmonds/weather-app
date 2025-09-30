@@ -67,8 +67,6 @@
     .search-results {
       margin: 0;
       padding: 0;
-      position: absolute;
-      top: 100%;
       right: 0;
       width: $searchbar-width-L;
       z-index: 999;
@@ -129,16 +127,17 @@
 @media only screen and (max-width: 375px) {
   .navbar{
     .search-area{
-      .search{
-        width: 175px;
+      .searc-container{
         position: absolute;
         top: 0;
         left: -100%;
+      }
+      .search{
+        width: 175px;
         display: none;
       }
       .search-results{
         width: 175px;
-        left: -100%;
       li{
         font-size: $medium-font;
       }
