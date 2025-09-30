@@ -143,10 +143,15 @@ h1 {
     left: -100%;
   }
   .navbar .search-area .search {
+    position: absolute;
+    right: 0;
     width: 175px;
     display: none;
   }
   .navbar .search-area .search-results {
+    position: absolute;
+    top: 40px;
+    right: 0;
     width: 175px;
   }
   .navbar .search-area .search-results li {

@@ -131,13 +131,18 @@
         left: -100%;
       }
       .search{
+        position: absolute;
+        right: 0;
         width: 175px;
         display: none;
       }
       .search-results{
+        position: absolute;
+        top: 40px;
+        right: 0;
         width: 175px;
-      li{
-        font-size: $medium-font;
+        li{
+          font-size: $medium-font;
       }
     }
     .search-btn{
