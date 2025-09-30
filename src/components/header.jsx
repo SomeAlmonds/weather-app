@@ -97,7 +97,9 @@ export default function Header({ fetchCurrent, tempToggle, setTempToggle }) {
           <icons.SearchIcon />
         </button>
 
-        <div className="search-container" onBlur={() => hideSearch()}>
+        <div 
+        className="search-container"
+        onBlur={() => hideSearch()}>
           <input
             type="text"
             className="search"
@@ -112,31 +114,30 @@ export default function Header({ fetchCurrent, tempToggle, setTempToggle }) {
               }
             }}
           />
-          <div>
-            <ul className="search-results">
-              {searchResp.map((location) => {
-                return (
-                  <li
-                    key={location.id}
-                    tabIndex={0}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter") {
-                        handleSubmit(location.name);
-                        hideSearch();
-                      }
-                    }}
-                    onClick={() => {
+          
+          <ul className="search-results">
+            {searchResp.map((location) => {
+              return (
+                <li
+                  key={location.id}
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
                       handleSubmit(location.name);
                       hideSearch();
-                    }}
-                  >
-                    <p>{location.name}</p>
-                    <p>{location.country}</p>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
+                    }
+                  }}
+                  onClick={() => {
+                    handleSubmit(location.name);
+                    hideSearch();
+                  }}
+                >
+                  <p>{location.name}</p>
+                  <p>{location.country}</p>
+                </li>
+              );
+            })}
+          </ul>
         </div>
       </div>
     </div>
