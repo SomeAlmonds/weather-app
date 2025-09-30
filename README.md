@@ -7,9 +7,10 @@ This is a weather website I made to practice using APIs.
 - HTML, CSS, Javascript
 - React.js
 - Sass
+- Nodejs
+- Express
 - [WeatherAPI](https://www.weatherapi.com/)
 
 ### Note:
 
-the app.js file in the backend folder has a reference to "apiInfo.js" which is a file containing the [WeatherAPI](https://www.weatherapi.com/) url and api key in an object named api.
-You'll need to make your own for the site to work.
+backend is hosted in another repo made by me, weather api request are made from there.

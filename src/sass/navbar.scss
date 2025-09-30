@@ -9,12 +9,14 @@
   justify-content: space-between;
   background: $primary-color;
   transition: 100ms;
+  overflow: visible;
 
-  .searchbar {
+  .search-area {
     position: relative;
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
+    overflow: visible;
 
     & *:focus {
       outline: 1px solid white;
@@ -43,6 +45,14 @@
 
     .search-btn{
       display: none;
+    }
+
+    .searc-container{
+      display: flex;
+      flex-flow: column nowrap;
+      gap: 0;
+      width: auto;
+      height: auto;
     }
 
     .search {
@@ -93,7 +103,7 @@
 
 @media only screen and (max-width: 640px) {
     .navbar{
-    .searchbar{
+    .search-area{
       .search{
         width: $searchbar-width-M;
       }
@@ -105,7 +115,7 @@
 }
 @media only screen and (max-width: 500px) {
   .navbar{
-    .searchbar{
+    .search-area{
       .search{
         width: $searchbar-width-S;
       }
@@ -118,7 +128,7 @@
 }
 @media only screen and (max-width: 375px) {
   .navbar{
-    .searchbar{
+    .search-area{
       .search{
         width: 175px;
         position: absolute;

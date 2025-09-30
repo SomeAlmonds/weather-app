@@ -43,17 +43,19 @@ h1 {
   justify-content: space-between;
   background: rgb(33, 33, 88);
   transition: 100ms;
+  overflow: visible;
 }
-.navbar .searchbar {
+.navbar .search-area {
   position: relative;
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
+  overflow: visible;
 }
-.navbar .searchbar *:focus {
+.navbar .search-area *:focus {
   outline: 1px solid white;
 }
-.navbar .searchbar .btn {
+.navbar .search-area .btn {
   margin-right: 5px;
   height: 40px;
   width: 40px;
@@ -63,19 +65,26 @@ h1 {
   font-size: 1.5rem;
   font-weight: bold;
 }
-.navbar .searchbar .btn:hover {
+.navbar .search-area .btn:hover {
   background-color: rgb(70, 70, 161);
   color: rgb(33, 33, 88);
   transition: 200ms;
 }
-.navbar .searchbar .btn:focus {
+.navbar .search-area .btn:focus {
   filter: brightness(140%);
   outline: none;
 }
-.navbar .searchbar .search-btn {
+.navbar .search-area .search-btn {
   display: none;
 }
-.navbar .searchbar .search {
+.navbar .search-area .searc-container {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 0;
+  width: auto;
+  height: auto;
+}
+.navbar .search-area .search {
   height: 40px;
   width: 400px;
   padding: 5px;
@@ -83,7 +92,7 @@ h1 {
   font-size: 1rem;
   border: 1px solid rgb(70, 70, 161);
 }
-.navbar .searchbar .search-results {
+.navbar .search-area .search-results {
   margin: 0;
   padding: 0;
   position: absolute;
@@ -92,7 +101,7 @@ h1 {
   width: 400px;
   z-index: 999;
 }
-.navbar .searchbar .search-results li {
+.navbar .search-area .search-results li {
   padding: 5px;
   height: 40px;
   display: flex;
@@ -105,48 +114,48 @@ h1 {
   cursor: pointer;
   transition: 200ms;
 }
-.navbar .searchbar .search-results li:hover {
+.navbar .search-area .search-results li:hover {
   filter: brightness(80%);
 }
-.navbar .searchbar .search-results li p {
+.navbar .search-area .search-results li p {
   pointer-events: none;
 }
-.navbar .searchbar .search-results li p:last-child {
+.navbar .search-area .search-results li p:last-child {
   opacity: 0.5;
 }
 
 @media only screen and (max-width: 640px) {
-  .navbar .searchbar .search {
+  .navbar .search-area .search {
     width: 250px;
   }
-  .navbar .searchbar .search-results {
+  .navbar .search-area .search-results {
     width: 250px;
   }
 }
 @media only screen and (max-width: 500px) {
-  .navbar .searchbar .search {
+  .navbar .search-area .search {
     width: 150px;
   }
-  .navbar .searchbar .search-results {
+  .navbar .search-area .search-results {
     width: 150px;
   }
 }
 @media only screen and (max-width: 375px) {
-  .navbar .searchbar .search {
+  .navbar .search-area .search {
     width: 175px;
     position: absolute;
     top: 0;
     left: -100%;
     display: none;
   }
-  .navbar .searchbar .search-results {
+  .navbar .search-area .search-results {
     width: 175px;
     left: -100%;
   }
-  .navbar .searchbar .search-results li {
+  .navbar .search-area .search-results li {
     font-size: 0.9rem;
   }
-  .navbar .searchbar .search-btn {
+  .navbar .search-area .search-btn {
     display: block;
   }
 }
@@ -169,12 +178,6 @@ h1 {
   z-index: -1;
   background-size: cover;
   background-repeat: no-repeat;
-}
-.body .isday-1 {
-  background-image: url("src/assets/clear-day-sky.jpeg");
-}
-.body .isday-0 {
-  background-image: url("src/assets/clear-night.jpg");
 }
 .body .body-content {
   width: 80%;

@@ -77,7 +77,7 @@ export default function Header({ fetchCurrent, tempToggle, setTempToggle }) {
         </p>
       </div>
 
-      <div className="searchbar">
+      <div className="search-area">
         <button
           className="switch btn"
           type="button"
@@ -97,7 +97,9 @@ export default function Header({ fetchCurrent, tempToggle, setTempToggle }) {
           <icons.SearchIcon />
         </button>
 
-        <div onBlur={() => hideSearch()}>
+        <div 
+        className="search-container"
+        onBlur={() => hideSearch()}>
           <input
             type="text"
             className="search"
