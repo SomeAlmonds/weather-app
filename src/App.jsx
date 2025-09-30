@@ -23,7 +23,7 @@ function App() {
     // fetch forecast also incluedes current weather obj so fetching from "/current.json" is not needed
     try {
       let forecastResp = await fetch(
-        `https://weather-app-nine-navy-iyhot21fje.vercel.app/api/forecast?city=${city}`
+        `https://weather-app-backend-pi.vercel.app/api/forecast?city=${city}`
       );
       if (!forecastResp.ok) {
         throw new Error(`Somthing went wrong ERROR: ${forecastResp.status}`);
