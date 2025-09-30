@@ -1,4 +1,6 @@
 import { icons } from "../assets/assets";
+import nightSky from "../assets/clear-night.jpg";
+import daySky from "../assets/clear-day-sky.jpeg";
 
 export function Body({ forecastObj, tempToggle }) {
   const { current, location, forecast } = forecastObj;
@@ -12,7 +14,7 @@ export function Body({ forecastObj, tempToggle }) {
 
   return (
     <div className="body">
-      <div className={`bg isday-${current?.is_day}`}></div>
+      <div className={'bg'} style={{backgroundImage: `url(${(current?.is_day)? daySky: nightSky})`}}></div>
 
       {/* ////////////////////////////////////// */}
 

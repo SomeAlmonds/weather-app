@@ -4,9 +4,18 @@ import { icons } from "../assets/assets";
 export default function Header({ fetchCurrent, tempToggle, setTempToggle }) {
   const [searchResp, setSearchResp] = useState([]);
 
+  function hideSearch() {
+    const searchbar = document.getElementsByClassName("search")[0];
+    if (searchbar.getAttribute("style")) {
+      searchbar.removeAttribute("style", "display: block;");
+    }
+
+    const searchResults = document.getElementsByClassName("search-results")[0];
+    searchResults.setAttribute("style", "display: none;");
+  }
+
   async function fetchSearch(e) {
     // this function is for getting the suggestions for the search bar
-
     const { value } = e.target;
 
     if (value) {
@@ -28,10 +37,12 @@ export default function Header({ fetchCurrent, tempToggle, setTempToggle }) {
           throw new Error(resp);
         }
         resp = await resp.json();
+        e.target.autoComplete = resp[0].name;
 
         // submit first suggestion if enter is pressed
         if (e.key === "Enter") {
           handleSubmit(resp[0].name);
+          e.target.value = "";
         }
 
         setSearchResp(resp);
@@ -47,10 +58,6 @@ export default function Header({ fetchCurrent, tempToggle, setTempToggle }) {
   }
 
   async function handleSubmit(city) {
-    // hide suggestions after submit
-    const searchResults = document.getElementsByClassName("search-results")[0];
-    searchResults.setAttribute("style", "display: none;");
-    // pass city name to fetch it's weather info
     if (city) {
       fetchCurrent(city);
     }
@@ -69,6 +76,7 @@ export default function Header({ fetchCurrent, tempToggle, setTempToggle }) {
           </a>
         </p>
       </div>
+
       <div className="searchbar">
         <button
           className="switch btn"
@@ -88,47 +96,47 @@ export default function Header({ fetchCurrent, tempToggle, setTempToggle }) {
         >
           <icons.SearchIcon />
         </button>
-        <input
-          type="text"
-          className="search"
-          name="search"
-          placeholder="Search locations..."
-          autoComplete="off"
-          onChange={(e) => fetchSearch(e)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") fetchSearch(e);
-          }}
-          onBlur={(e) => {
-            const searchbar = document.getElementsByClassName("search")[0];
-            if (searchbar.getAttribute("style")) {
-              searchbar.removeAttribute("style", "display: block;");
-            }
-            e.target.value = "";
 
-            const searchResults =
-              document.getElementsByClassName("search-results")[0];
-            setTimeout(() => searchResults.setAttribute("style", "display: none;"),100);
-          }}
-        />
-        <ul className="search-results">
-          {searchResp.map((location) => {
-            return (
-              <li
-                key={location.id}
-                tabIndex={0}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") handleSubmit(location.name);
-                }}
-                onClick={() => {
-                  handleSubmit(location.name);
-                }}
-              >
-                <p>{location.name}</p>
-                <p>{location.country}</p>
-              </li>
-            );
-          })}
-        </ul>
+        <div onBlur={() => hideSearch()}>
+          <input
+            type="text"
+            className="search"
+            name="search"
+            placeholder="Search locations..."
+            autoComplete="off"
+            onChange={(e) => fetchSearch(e)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                fetchSearch(e);
+                hideSearch();
+              }
+            }}
+          />
+
+          <ul className="search-results">
+            {searchResp.map((location) => {
+              return (
+                <li
+                  key={location.id}
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      handleSubmit(location.name);
+                      hideSearch();
+                    }
+                  }}
+                  onClick={() => {
+                    handleSubmit(location.name);
+                    hideSearch();
+                  }}
+                >
+                  <p>{location.name}</p>
+                  <p>{location.country}</p>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
       </div>
     </div>
   );
