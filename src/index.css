@@ -82,6 +82,7 @@ h1 {
   flex-flow: column nowrap;
   gap: 0;
   height: max-content;
+  z-index: 1000;
 }
 .navbar .search-area .search {
   height: 40px;

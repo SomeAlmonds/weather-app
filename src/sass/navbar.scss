@@ -52,6 +52,7 @@
       flex-flow: column nowrap;
       gap: 0;
       height: max-content;
+      z-index: 1000;
     }
 
     .search {
