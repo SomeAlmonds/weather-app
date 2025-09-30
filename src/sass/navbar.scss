@@ -51,8 +51,6 @@
       display: flex;
       flex-flow: column nowrap;
       gap: 0;
-      width: auto;
-      height: auto;
     }
 
     .search {
@@ -67,7 +65,6 @@
     .search-results {
       margin: 0;
       padding: 0;
-      right: 0;
       width: $searchbar-width-L;
       z-index: 999;
 
