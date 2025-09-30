@@ -77,12 +77,11 @@ h1 {
 .navbar .search-area .search-btn {
   display: none;
 }
-.navbar .search-area .searc-container {
+.navbar .search-area .search-container {
   display: flex;
   flex-flow: column nowrap;
   gap: 0;
-  width: auto;
-  height: auto;
+  height: max-content;
 }
 .navbar .search-area .search {
   height: 40px;
@@ -95,9 +94,6 @@ h1 {
 .navbar .search-area .search-results {
   margin: 0;
   padding: 0;
-  position: absolute;
-  top: 100%;
-  right: 0;
   width: 400px;
   z-index: 999;
 }
@@ -141,16 +137,17 @@ h1 {
   }
 }
 @media only screen and (max-width: 375px) {
-  .navbar .search-area .search {
-    width: 175px;
+  .navbar .search-area .searc-container {
     position: absolute;
     top: 0;
     left: -100%;
+  }
+  .navbar .search-area .search {
+    width: 175px;
     display: none;
   }
   .navbar .search-area .search-results {
     width: 175px;
-    left: -100%;
   }
   .navbar .search-area .search-results li {
     font-size: 0.9rem;
