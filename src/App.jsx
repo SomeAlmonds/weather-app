@@ -34,7 +34,7 @@ function App() {
   }
 
   useEffect(() => {
-    () => fetchCurrent();
+    fetchCurrent();
   }, []);
 
   return (
