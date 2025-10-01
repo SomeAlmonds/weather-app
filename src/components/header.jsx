@@ -9,13 +9,13 @@ export default function Header({ fetchCurrent, tempToggle, setTempToggle }) {
     const searchResults = document.getElementsByClassName("search-results")[0];
 
     if (
-      !searchResults.contains(document.activeElement) &
-      (searchbar !== document.activeElement)
+      !searchResults.contains(document.activeElement) &&
+      document.activeElement !== searchbar
     ) {
       if (searchbar.getAttribute("style")) {
         searchbar.removeAttribute("style", "display: block;");
       }
-      searchResults.setAttribute("style", "display: none;");
+      setSearchResp([]);
     }
   }
 
@@ -42,7 +42,6 @@ export default function Header({ fetchCurrent, tempToggle, setTempToggle }) {
           throw new Error(resp);
         }
         resp = await resp.json();
-        e.target.autoComplete = resp[0].name;
 
         // submit first suggestion if enter is pressed
         if (e.key === "Enter") {
@@ -116,9 +115,10 @@ export default function Header({ fetchCurrent, tempToggle, setTempToggle }) {
                 hideSearch();
               }
             }}
+            onBlur={() => hideSearch()}
           />
 
-          <ul className="search-results" onBlur={() => hideSearch()}>
+          <ul className="search-results">
             {searchResp.map((location) => {
               return (
                 <li
