@@ -4,13 +4,14 @@ import { icons } from "../assets/assets";
 export default function Header({ fetchCurrent, tempToggle, setTempToggle }) {
   const [searchResp, setSearchResp] = useState([]);
 
-  function hideSearch() {
+  function hideSearch(submit) {
     const searchbar = document.getElementsByClassName("search")[0];
     const searchResults = document.getElementsByClassName("search-results")[0];
 
     if (
-      !searchResults.contains(document.activeElement) &&
-      document.activeElement !== searchbar
+      submit ||
+      (!searchResults.contains(document.activeElement) &&
+        document.activeElement !== searchbar)
     ) {
       if (searchbar.getAttribute("style")) {
         searchbar.removeAttribute("style", "display: block;");
@@ -112,7 +113,7 @@ export default function Header({ fetchCurrent, tempToggle, setTempToggle }) {
             onKeyDown={(e) => {
               if (e.key === "Enter") {
                 fetchSearch(e);
-                hideSearch();
+                hideSearch(1);
               }
             }}
             onBlur={() => hideSearch()}
@@ -127,12 +128,12 @@ export default function Header({ fetchCurrent, tempToggle, setTempToggle }) {
                   onKeyDown={(e) => {
                     if (e.key === "Enter") {
                       handleSubmit(location.name);
-                      hideSearch();
+                      hideSearch(1);
                     }
                   }}
                   onClick={() => {
                     handleSubmit(location.name);
-                    hideSearch();
+                    hideSearch(1);
                   }}
                   onBlur={() => hideSearch()}
                 >
