@@ -6,11 +6,11 @@ export default function Header({ fetchCurrent, tempToggle, setTempToggle }) {
 
   function hideSearch(submit) {
     const searchbar = document.getElementsByClassName("search")[0];
-    const searchResults = document.getElementsByClassName("search-results")[0];
+    const searchResults = document.getElementsByClassName("location");
 
     if (
       submit ||
-      (!searchResults.contains(document.activeElement) &&
+      (!searchResults.includes(document.activeElement) &&
         document.activeElement !== searchbar)
     ) {
       if (searchbar.getAttribute("style")) {
@@ -111,13 +111,14 @@ export default function Header({ fetchCurrent, tempToggle, setTempToggle }) {
                 hideSearch(1);
               }
             }}
-            onBlur={() => hideSearch()}
+            onBlur={() => hideSearch(0)}
           />
 
           <ul className="search-results">
             {searchResp.map((location) => {
               return (
                 <li
+                  className="location"
                   key={location.id}
                   tabIndex={0}
                   onKeyDown={(e) => {
@@ -130,7 +131,7 @@ export default function Header({ fetchCurrent, tempToggle, setTempToggle }) {
                     handleSubmit(location.name);
                     hideSearch(1);
                   }}
-                  onBlur={() => hideSearch()}
+                  onBlur={() => hideSearch(0)}
                 >
                   <p>{location.name}</p>
                   <p>{location.country}</p>
