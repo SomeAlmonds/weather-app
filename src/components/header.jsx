@@ -44,12 +44,6 @@ export default function Header({ fetchCurrent, tempToggle, setTempToggle }) {
         }
         resp = await resp.json();
 
-        // submit first suggestion if enter is pressed
-        if (e.key === "Enter") {
-          handleSubmit(resp[0].name);
-          e.target.value = "";
-        }
-
         setSearchResp(resp);
       } catch (error) {
         console.error(error);
@@ -112,7 +106,8 @@ export default function Header({ fetchCurrent, tempToggle, setTempToggle }) {
             onChange={(e) => fetchSearch(e)}
             onKeyDown={(e) => {
               if (e.key === "Enter") {
-                fetchSearch(e);
+                handleSubmit(searchResp[0].name);
+                e.target.value = "";
                 hideSearch(1);
               }
             }}
