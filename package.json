@@ -11,10 +11,11 @@
     "c-sass": "sass --watch ./src/sass/index.scss:./src/index.css"
   },
   "dependencies": {
+    "@vercel/analytics": "^1.5.0",
+    "express": "^5.1.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "sass": "^1.92.1",
-    "express": "^5.1.0"
+    "sass": "^1.92.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.33.0",

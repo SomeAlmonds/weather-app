@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Body } from "./components/body";
 import Header from "./components/header";
+import { Analytics } from "@vercel/analytics/react";
 
 function App() {
   const [forecast, setForecast] = useState({});
@@ -39,6 +40,7 @@ function App() {
 
   return (
     <>
+      <Analytics />
       <Header
         fetchCurrent={fetchCurrent}
         tempToggle={tempToggle}
